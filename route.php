@@ -9,7 +9,8 @@ class route {
     public $params;
     public $action;
     
-    public function start() {
+    public static function start()
+    {
         /*$maps = $this->getUri();
         $this->run($maps);*/
         $this->parseUrl();
@@ -17,7 +18,8 @@ class route {
     }
 
     //获取uri地址并解析
-    public function getUri() {
+    public function getUri()
+    {
         $this->request_uri = $_SERVER['PHP_SELF'];
         $this->path_info = $_SERVER['PATH_INFO'];
         $this->path_info = ltrim($this->path_info, '\/');
@@ -26,7 +28,8 @@ class route {
     }
 
     //解析路由
-    public function parseUrl() {
+    public function parseUrl()
+    {
         $maps = $this->getUri();
         //$this->module = $maps[0];
         $this->controller = $maps[0];
@@ -35,14 +38,16 @@ class route {
     }
 
     //根据路由实例相应控制器
-    public function run() {
+    public function run()
+    {
         $class = 'Controller\\' . ucfirst($this->controller) . 'Controller';
         $controller = new $class();
         call_user_func_array([$controller, $this->action], $this->params);
     }
 
     //调试方法
-    public function test() {
+    public function test()
+    {
         $this->parseUrl();
         var_dump(ucfirst($this->controller));
         var_dump($this->action);

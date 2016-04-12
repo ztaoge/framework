@@ -1,6 +1,10 @@
 <?php
 spl_autoload_register('autoload');
 function autoload($class) {
+    $_map = ['smarty'];
+    if (in_array($class, $_map)) {
+
+    }
     //解析命名空间
     if (false === strpos($class, '\\')) {
         $path = $class . '.php';
@@ -13,7 +17,8 @@ function autoload($class) {
 }
 
 //加载路由转发类
-$route = new route();
-//var_dump($route->getUri());
-$route->start();
-//$route->test();
+/*$route = new route();
+$route->start();*/
+route::start();
+
+
